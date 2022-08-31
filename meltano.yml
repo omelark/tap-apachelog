@@ -1,0 +1,19 @@
+version: 1
+send_anonymous_usage_stats: true
+project_id: "tap-apachelog"
+plugins:
+  extractors:
+  - name: tap-apachelog
+    namespace: tap_apachelog
+    pip_url: -e .
+    capabilities:
+    - config
+    - discover
+    config:
+      files:
+        - entity: test
+          path: tap_apachelog/tests/data/access.log
+  loaders:
+  - name: target-jsonl
+    variant: andyh1203
+    pip_url: target-jsonl
